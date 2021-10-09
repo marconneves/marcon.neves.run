@@ -5,7 +5,7 @@ import { Button } from '@chakra-ui/button'
 import { Image } from '@chakra-ui/image'
 import { Flex, Text, VStack } from '@chakra-ui/layout'
 
-import type { GetServerSideProps, NextPage } from 'next'
+import type { GetStaticProps , NextPage } from 'next'
 import Head from 'next/head'
 
 import { getPrismicClient } from '../services/prismic'
@@ -102,26 +102,21 @@ const Links: NextPage<LinksProps> = ({ content }) => {
 
 export default Links
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const prismic = getPrismicClient(req);
+export const getStaticProps : GetStaticProps = async () => {
+  const prismic = getPrismicClient();
 
   const { data } = await prismic.getSingle('bio_links', {});
 
+  // return !RegExp(notVisibleInRefer.replace(/\./g,'\\.'), 'gi').test(req?.headers?.referer);
+  
   const content = {
     favicon: data.favicon.url,
     profileImage: data.profile_image.url,
-    links: data.links.filter((link: any) => {
-      const notVisibleInRefer = RichText.asText(link.not_visible_in_refer);
-      if(!notVisibleInRefer || !req?.headers?.referer){
-        return true;
-      }
-
-      return !RegExp(notVisibleInRefer.replace(/\./g,'\\.'), 'gi').test(req?.headers?.referer);
-    }).map((link: any) => {
-      console.log(link.not_visible_in_refer)
+    links: data.links.map((link: any) => {
       return {
         text: RichText.asText(link.link_text),
-        href: link.href.url
+        href: link.href.url,
+        notVisibleInRefer: RichText.asText(link.not_visible_in_refer)
       }
     }),
     footer: RichText.asHtml(data.footer),
@@ -138,6 +133,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   return {
     props: {
       content
-    }
+    },
+    revalidate: 60 * 60 * 24 // 24 hours
   }
 }
