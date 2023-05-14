@@ -10,7 +10,7 @@ jobs:
     name: 'Deploy - Terraform'
     runs-on: ubuntu-latest
     environment:
-      name: Development
+      name: production
       url: https://mh4sh.dev
 
     env:
