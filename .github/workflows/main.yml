@@ -18,7 +18,7 @@ jobs:
       TF_VAR_gcp_key_file: ${{ secrets.GCP_SERVICE_KEY }}
       TF_VAR_vercel_token: ${{ secrets.VERCEL_TOKEN }}
       TF_VAR_vercel_org_id: ${{ secrets.VERCEL_ORG_ID }}
-      TF_VAR_doppler_token: ${{ secrets.DOPPLER_TOKEN_PROD }}
+      TF_VAR_doppler_token: ${{ secrets.DOPPLER_TOKEN }}
       TF_VAR_doppler_project: ${{ secrets.DOPPLER_PROJECT }}
       TF_VAR_domain_deploy: mh4sh.dev
       TF_VAR_environment: production
