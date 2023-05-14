@@ -42,12 +42,9 @@ jobs:
     - name: Setup Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
 
-    - name: Print Var
-      run: echo $TF_VAR_doppler_project
-
     - name: Terraform Init
       id: init
-      run: terraform init -backend-config="prefix=terraform/${{ env.TF_VAR_environment }}/vercel/${{ env.TF_VAR_project_name }}"
+      run: terraform init -backend-config="prefix=terraform/mh4sh/${{ env.TF_VAR_environment }}/vercel/${{ env.TF_VAR_project_name }}"
 
     - name: Terraform Format
       id: fmt
