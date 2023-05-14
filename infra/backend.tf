@@ -1,5 +1,5 @@
 terraform {
   backend "gcs" {
-    bucket = "lidsa-storage-devops"
+    bucket = "mh4sh-devops"
   }
 }
