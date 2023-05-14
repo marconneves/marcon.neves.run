@@ -102,10 +102,30 @@ const Links: NextPage<LinksProps> = ({ content }) => {
 
 export default Links
 
+interface SinglePagePrismic {
+  favicon:{
+    url: string;
+  },
+  profile_image:{
+    url: string;
+  },
+  links: {
+    link_text: string;
+    href: {
+      url: string;
+    }
+    not_visible_in_refer: any;
+  }[];
+  footer: any;
+  'seo-title': any;
+  'seo-description': any;
+  'seo-keywords': any[];
+}
+
 export const getStaticProps : GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
-  const { data } = await prismic.getSingle('bio_links', {});
+  const { data } = await prismic.getSingle<SinglePagePrismic>('bio_links', {});
 
   // return !RegExp(notVisibleInRefer.replace(/\./g,'\\.'), 'gi').test(req?.headers?.referer);
   
