@@ -9,6 +9,7 @@ import type { GetStaticProps , NextPage } from 'next'
 import Head from 'next/head'
 
 import { getPrismicClient } from '../services/prismic'
+import { ChakraProvider, StyleFunctionProps, extendTheme } from "@chakra-ui/react";
 
 interface LinksProps {
   content: {
@@ -24,13 +25,28 @@ interface LinksProps {
       description: string;
       keywords: string;
     }
+    style: {
+      background_color: string;
+      color: string;
+    }
   }
 }
 
 const Links: NextPage<LinksProps> = ({ content }) => {
-  console.log(content)
+
+  const pageTheme  = extendTheme({
+    styles: {
+      global: {
+        body: {
+          bg: content.style.background_color,
+          color: content.style.color
+        }
+      }
+    }
+  })
+
   return (
-    <>
+    <ChakraProvider theme={pageTheme}>
       <Head>
         <link rel="icon" type="image/png" sizes="16x16" href={content.favicon} />
         <title>{content?.seo?.title || 'Marcon Willian'}</title>
@@ -96,7 +112,7 @@ const Links: NextPage<LinksProps> = ({ content }) => {
             />
         </Text>
       </Flex>
-    </>
+    </ChakraProvider>
   )
 }
 
@@ -120,15 +136,15 @@ interface SinglePagePrismic {
   'seo-title': any;
   'seo-description': any;
   'seo-keywords': any[];
+  background_color: string;
+  color: string;
 }
 
 export const getStaticProps : GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
-  const { data } = await prismic.getSingle<SinglePagePrismic>('bio_links', {});
+  const { data } = await prismic.getByUID<SinglePagePrismic>('bio_links', process.env.PRISMIC_UID || '', {});
 
-  // return !RegExp(notVisibleInRefer.replace(/\./g,'\\.'), 'gi').test(req?.headers?.referer);
-  
   const content = {
     favicon: data.favicon.url,
     profileImage: data.profile_image.url,
@@ -140,6 +156,10 @@ export const getStaticProps : GetStaticProps = async () => {
       }
     }),
     footer: RichText.asHtml(data.footer),
+    style: {
+      background_color: data.background_color,
+      color: data.color,
+    },
     seo: {
       title: RichText.asText(data['seo-title']),
       description: RichText.asText(data['seo-description']),
