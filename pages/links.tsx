@@ -105,9 +105,7 @@ export default Links
 export const getStaticProps : GetStaticProps = async () => {
   const prismic = getPrismicClient();
 
-  const { data } = await prismic.getSingle('bio_links', {});
-
-  // return !RegExp(notVisibleInRefer.replace(/\./g,'\\.'), 'gi').test(req?.headers?.referer);
+  const { data } = await prismic.getByUID('bio_links', process.env.PRISMIC_UID || '', {});
   
   const content = {
     favicon: data.favicon.url,
