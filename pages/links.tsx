@@ -145,6 +145,8 @@ export const getStaticProps : GetStaticProps = async () => {
 
   const { data } = await prismic.getByUID<SinglePagePrismic>('bio_links', process.env.PRISMIC_UID || '', {});
 
+  console.log(process.env.PRISMIC_UID);
+
   const content = {
     favicon: data.favicon.url,
     profileImage: data.profile_image.url,
