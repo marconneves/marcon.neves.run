@@ -20,6 +20,7 @@ code {
 }
 
 :root {
+  
   --radius: 0.625rem;
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
@@ -29,8 +30,10 @@ code {
   --popover-foreground: oklch(0.13 0.028 261.692);
   --primary: oklch(0.6843 0.1511 239.21);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.967 0.003 264.542);
+  --secondary: oklch(0.7107 0.0351 256.79);
   --secondary-foreground: oklch(0.21 0.034 264.665);
+  --gray-500: oklch(0.7107 0.0351 256.79);
+  --gray-800: oklch(0.2795 0.0368 260.03);
   --muted: oklch(0.967 0.003 264.542);
   --muted-foreground: oklch(0.551 0.027 264.364);
   --accent: oklch(0.967 0.003 264.542);
@@ -99,6 +102,10 @@ code {
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-gray-500: var(--gray-500);
+  --color-gray-800: var(--gray-800);
 }
 
 @layer base {

@@ -1,13 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { Hero } from "../components/Hero";
+import { Terminal } from "../components/Terminal";
 
 export default function HomeScreen() {
   return (
-    <div className="text-center">
-      <Button>Click me</Button>
-
-      <p className="font-sans text-foreground">The quick brown fox ...</p>
-      <p className="font-mono text-foreground">The quick brown fox ...</p>
-      <p className="font-code text-foreground">The quick brown fox ...</p>
-    </div>
+    <main className="flex px-10 items-center justify-center min-h-screen gap-20">
+      <Hero />
+      <Terminal />
+    </main>
   )
 }

@@ -5,10 +5,12 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import Header from '../components/Header'
 
 export const Route = createRootRoute({
-  component: () => (
-    <>
-      <Header />
-      <Outlet />
+  component: () => (<>
+      <div className='min-h-screen relative flex flex-col'>
+        <Header />
+        <Outlet />
+        <div />
+      </div>
       <TanStackDevtools
         config={{
           position: 'bottom-right',
