@@ -1,14 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Button } from "@/components/ui/button"
+
+import HomeScreen from '@/features/home/screen/HomeScreen'
 
 export const Route = createFileRoute('/')({
-  component: App,
+  component: HomeScreen,
 })
-
-function App() {
-  return (
-    <div className="text-center">
-      <Button>Click me</Button>
-    </div>
-  )
-}
