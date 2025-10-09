@@ -63,8 +63,8 @@ export function BubbleText({ children }: { children: string }) {
   }, []);
 
   return (
-    <h2 className="hover-text text-5xl font-extrabold text-white">
+    <h1 className="hover-text text-5xl font-extrabold font-sans text-white text-center md:text-start">
       <Text>{children}</Text>
-    </h2>
+    </h1>
   );
 };

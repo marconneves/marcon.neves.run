@@ -5,9 +5,7 @@ export function Hero(){
     <div className="flex-1 w-full m-auto inline-flex justify-center md:justify-end">
       <section id="hero"  className="w-full max-w-[550px] flex-1 flex flex-col gap-5 items-center md:items-start">
         <div className="flex flex-col gap-2 items-center md:items-start ">
-          <h1 className="font-extrabold font-sans text-7xl text-white ">
-            <BubbleText>Marcon Neves</BubbleText>
-          </h1>
+          <BubbleText>Marcon Neves</BubbleText>
           <h2 className="font-mono text-secondary text-xl">
             Founder & CTO at cod.gital
           </h2>
