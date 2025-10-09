@@ -18,7 +18,8 @@ export function Hero(){
               LinkedIn
             </a>
           </li>
-          <li><a href="https://github.com/marconneves/" target="_blank">
+          <li className="transition-transform hover:scale-105">
+            <a href="https://github.com/marconneves/" target="_blank">
               Github
             </a>
           </li>
