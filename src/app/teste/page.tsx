@@ -1,4 +1,4 @@
-import { exampleFlag } from "../../../flags";
+import { exampleFlag } from "../../flags";
 
  
 export default async function Page() {

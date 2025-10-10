@@ -6,3 +6,10 @@ export const exampleFlag = flag({
     return Math.random() > 0.5;
   },
 });
+
+export const terminalCode = flag({
+  key: 'terminal-code-flag',
+  decide() {
+    return Math.random() > 0.5;
+  },
+});
