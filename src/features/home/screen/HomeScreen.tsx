@@ -1,4 +1,4 @@
-import SmartCursor from "~/components/SmartCursor";
+import SmartCursor from "@/components/SmartCursor";
 
 import { Hero } from "../components/Hero";
 import { Terminal } from "../components/Terminal";
