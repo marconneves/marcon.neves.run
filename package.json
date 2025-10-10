@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && tsc --noEmit",
-    "start": "node .output/server/index.mjs",
+    "start": "bun run server.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."
@@ -29,6 +29,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@tanstack/nitro-v2-vite-plugin": "^1.132.40",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
@@ -36,6 +37,7 @@
     "@typescript-eslint/parser": "^8.46.0",
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.20",
+    "bun-types": "^1.2.23",
     "eslint": "^9.37.0",
     "eslint-config-next": "^15.5.4",
     "eslint-config-prettier": "^10.1.8",
@@ -43,9 +45,9 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^6.1.1",
+    "postcss": "^8.5.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "postcss": "^8.5.1",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.46.0",
     "vite": "^7.1.7",

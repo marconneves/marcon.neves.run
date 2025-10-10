@@ -1,0 +1,16 @@
+{
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist/client",
+  "installCommand": "bun install",
+  "functions": {
+    "dist/server/server.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "function": "dist/server/server.js"
+    }
+  ]
+}
