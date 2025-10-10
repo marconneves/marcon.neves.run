@@ -1,86 +1,82 @@
-import { TanStackDevtools } from '@tanstack/react-devtools'
-import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+/// <reference types="vite/client" />
+import * as React from 'react'
 
-import Header from '../components/Header'
+import {
+  HeadContent,
+  Scripts,
+  createRootRoute,
+} from '@tanstack/react-router'
+
+import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary'
+import Header from '~/components/Header'
+import { NotFound } from '~/components/NotFound'
+import appCss from '~/styles/app.css?url'
+import { seo } from '~/utils/seo'
+
 
 export const Route = createRootRoute({
   head: () => ({
-    title: 'Marcon Neves',
     meta: [
       {
-        name: 'description',
-        content: 'Portfolio pessoal de Marcon Neves - Desenvolvedor Full Stack',
-      },
-      // Open Graph
-      {
-        property: 'og:type',
-        content: 'website',
+        charSet: 'utf-8',
       },
       {
-        property: 'og:url',
-        content: 'https://marcon.neves.run',
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      ...seo({
+        title:
+          'TanStack Start | Type-Safe, Client-First, Full-Stack React Framework',
+        description: `TanStack Start is a type-safe, client-first, full-stack React framework. `,
+      }),
+    ],
+    links: [
+      { rel: 'stylesheet', href: appCss },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
       },
       {
-        property: 'og:title',
-        content: 'Marcon Neves',
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
       },
       {
-        property: 'og:description',
-        content: 'Portfolio pessoal de Marcon Neves - Desenvolvedor Full Stack',
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
       },
+      { rel: 'manifest', href: '/site.webmanifest', color: '#fffff' },
+      { rel: 'icon', href: '/favicon.ico' },
+    ],
+    scripts: [
       {
-        property: 'og:image',
-        content: 'https://marcon.neves.run/og-image.png',
-      },
-      {
-        property: 'og:site_name',
-        content: 'Marcon Neves',
-      },
-      // Twitter
-      {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        name: 'twitter:url',
-        content: 'https://marcon.neves.run',
-      },
-      {
-        name: 'twitter:title',
-        content: 'Marcon Neves',
-      },
-      {
-        name: 'twitter:description',
-        content: 'Portfolio pessoal de Marcon Neves - Desenvolvedor Full Stack',
-      },
-      {
-        name: 'twitter:image',
-        content: 'https://marcon.neves.run/og-image.png',
+        src: '/customScript.js',
+        type: 'text/javascript',
       },
     ],
   }),
-  component: () => (<>
-      <HeadContent />
-      <div className='min-h-screen relative flex flex-col'>
-        <Header />
-        <Outlet />
-        <div />
-      </div>
-      <Scripts />
-      {process.env.NODE_ENV === 'development' && (
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
-      )}
-    </>
-  ),
+  errorComponent: DefaultCatchBoundary,
+  notFoundComponent: () => <NotFound />,
+  shellComponent: RootDocument,
 })
+
+function RootDocument({ children }: { children: React.ReactNode }) {
+  return (
+    <html>
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        <div className='min-h-screen relative flex flex-col'>
+          <Header />
+          {children}
+        </div>
+        <Scripts />
+      </body>
+    </html>
+  )
+}
