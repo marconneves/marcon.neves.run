@@ -1,17 +1,10 @@
 import { flag } from 'flags/next';
  
-export const exampleFlag = flag<number>({
-  key: 'example-flag',
-  defaultValue: 0,
+export const aboutPageFlag = flag<boolean>({
+  key: 'about-page-flag',
+  defaultValue: false,
   description:
-    'A flag for debugging and demo purposes which delays the data loading',
-  options: [
-    { value: 0, label: 'No delay' },
-    { value: 200, label: '200ms' },
-    { value: 1000, label: '1s' },
-    { value: 3000, label: '3s' },
-    { value: 10_000, label: '10s' },
-  ],
+    'Ativar pagina sobre.',
   decide() {
     return this.defaultValue!;
   },
