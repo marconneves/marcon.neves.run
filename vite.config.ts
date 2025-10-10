@@ -20,7 +20,7 @@ export default defineConfig({
     }),
     viteReact(),
     tailwindcss(),
-    nitroV2Plugin( { preset: 'vercel' } )
+    nitroV2Plugin()
   ],
   resolve: {
     alias: {
