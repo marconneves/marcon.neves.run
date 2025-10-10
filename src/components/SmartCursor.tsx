@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 interface SmartCursorProps {
   areaId: string;
@@ -9,13 +9,12 @@ interface SmartCursorProps {
 export default function SmartCursor({ areaId }: SmartCursorProps) {
   const [clicking, setClicking] = useState(false);
   const [isLink, setIsLink] = useState(false);
+  const [isText, setIsText] = useState(false);
+  const [textHeight, setTextHeight] = useState(20);
   const [visible, setVisible] = useState(false);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
-  const smoothX = useSpring(x, { stiffness: 300, damping: 30 });
-  const smoothY = useSpring(y, { stiffness: 300, damping: 30 });
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -32,12 +31,42 @@ export default function SmartCursor({ areaId }: SmartCursorProps) {
       y.set(e.clientY);
 
       const target = e.target as HTMLElement;
-      const isHoverable =
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.dataset.hover === "true";
+      const tag = target.tagName;
 
-      setIsLink(isHoverable);
+      const textModeDisabled = !!target.closest('[data-cursor-text="false"]');
+
+      const hoverable =
+        tag === "A" || tag === "BUTTON" || target.dataset.hover === "true";
+
+      const isLikelyText =
+        !textModeDisabled &&
+        (tag === "P" ||
+          tag === "SPAN" ||
+          tag === "H1" ||
+          tag === "H2" ||
+          tag === "H3" ||
+          tag === "H4" ||
+          tag === "H5" ||
+          tag === "H6" ||
+          tag === "SMALL" ||
+          tag === "LABEL" ||
+          tag === "STRONG" ||
+          target.nodeType === Node.TEXT_NODE);
+
+      setIsLink(hoverable);
+      setIsText(isLikelyText);
+
+      if (isLikelyText) {
+        const computed = window.getComputedStyle(target);
+        const lh = parseFloat(computed.lineHeight);
+        const fs = parseFloat(computed.fontSize);
+        const height = !isNaN(lh)
+          ? lh
+          : !isNaN(fs)
+          ? fs * 1.2
+          : 20;
+        setTextHeight(height);
+      }
     };
 
     const down = () => setClicking(true);
@@ -60,15 +89,18 @@ export default function SmartCursor({ areaId }: SmartCursorProps) {
     <motion.div
       className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
       style={{
-        x: smoothX,
-        y: smoothY,
+        x,
+        y,
         translateX: "-50%",
         translateY: "-50%",
       }}
     >
       <motion.div
         animate={{
-          scale: clicking ? 0.9 : isLink ? 1.6 : 1,
+          width: isText ? 6 : 24,
+          height: isText ? textHeight : 24,
+          borderRadius: isText ? 999 : 9999,
+          scale: clicking ? 0.9 : isLink ? 1.4 : 1,
           opacity: isLink ? 0.9 : 0.7,
           backgroundColor: isLink
             ? "rgba(255,255,255,0.35)"
@@ -79,8 +111,11 @@ export default function SmartCursor({ areaId }: SmartCursorProps) {
             : "0 0 10px rgba(255,255,255,0.15)",
           border: "1px solid rgba(255,255,255,0.25)",
         }}
-        transition={{ type: "spring", stiffness: 250, damping: 20 }}
-        className="w-6 h-6 rounded-full"
+        transition={{
+          type: "tween",
+          ease: "easeOut",
+          duration: 0.08,
+        }}
       />
     </motion.div>
   );
