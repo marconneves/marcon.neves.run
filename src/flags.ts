@@ -17,11 +17,12 @@ export const exampleFlag = flag<number>({
   },
 });
 
-export const terminalCode = flag({
-  key: 'terminal-code-flag',
+export const headerCode = flag<boolean>({
+  key: 'header-flag',
+  defaultValue: false,
   description:
-    'Outra flag teste',
+    'Ativar header e navegação do site.',
   decide() {
-    return Math.random() > 0.5;
+    return this.defaultValue!;
   },
 });
