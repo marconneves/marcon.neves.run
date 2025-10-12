@@ -15,6 +15,8 @@ export default function NewsletterScreen() {
           <input type="text" placeholder="Seu melhor e-mail" />
           <Button>Inscrever-se</Button>
         </div>
+
+        <p>Ao se inscrever, você concorda com nossa <a href="/politica">Pólitica de Privacidade</a></p>
       </div>
     </main>
   )
