@@ -30,6 +30,15 @@ export const blogPageFlag = flag<boolean>({
   },
 });
 
+export const newsletterPageFlag = flag<boolean>({
+  key: 'newsletter-page-flag',
+  defaultValue: false,
+  description: 'Ativar feature da newsletter.',
+  decide() {
+    return this.defaultValue!;
+  }
+})
+
 export const headerCode = flag<boolean>({
   key: 'header-flag',
   defaultValue: false,

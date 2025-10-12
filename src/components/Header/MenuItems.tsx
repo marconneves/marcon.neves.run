@@ -1,4 +1,4 @@
-import { aboutPageFlag, blogPageFlag, contactPageFlag, headerCode } from "@/flags"
+import { aboutPageFlag, blogPageFlag, contactPageFlag, headerCode, newsletterPageFlag } from "@/flags"
 import Link from "next/link";
 
 const menuItems = [
@@ -6,7 +6,7 @@ const menuItems = [
   {label: 'Projetos', to: '/projetos'},
   {label: 'Contato', to: '/contato', isActive: contactPageFlag },
   {label: 'Blog', to: '/blog', isActive: blogPageFlag },
-  {label: 'Newsletter.', to: '/newsletter'}
+  {label: 'Newsletter', to: '/newsletter', isActive: newsletterPageFlag }
 ];
 
 export default async function MenuItems() {
