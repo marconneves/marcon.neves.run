@@ -10,6 +10,16 @@ export const aboutPageFlag = flag<boolean>({
   },
 });
 
+export const contactPageFlag = flag<boolean>({
+  key: 'contact-page-flag',
+  defaultValue: false,
+  description:
+    'Ativar pagina de contato.',
+  decide() {
+    return this.defaultValue!;
+  },
+});
+
 export const headerCode = flag<boolean>({
   key: 'header-flag',
   defaultValue: false,
