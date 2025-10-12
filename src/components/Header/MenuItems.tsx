@@ -1,11 +1,11 @@
-import { aboutPageFlag, headerCode } from "@/flags"
+import { aboutPageFlag, blogPageFlag, contactPageFlag, headerCode } from "@/flags"
 import Link from "next/link";
 
 const menuItems = [
   {label: 'Sobre', to: '/sobre', isActive: aboutPageFlag },
   {label: 'Projetos', to: '/projetos'},
-  {label: 'Contato', to: '/contato'},
-  {label: 'Blog', to: '/blog'},
+  {label: 'Contato', to: '/contato', isActive: contactPageFlag },
+  {label: 'Blog', to: '/blog', isActive: blogPageFlag },
   {label: 'Newsletter.', to: '/newsletter'}
 ];
 

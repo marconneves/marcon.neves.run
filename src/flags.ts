@@ -20,6 +20,16 @@ export const contactPageFlag = flag<boolean>({
   },
 });
 
+export const blogPageFlag = flag<boolean>({
+  key: 'blog-page-flag',
+  defaultValue: false,
+  description:
+    'Ativar pagina do blog.',
+  decide() {
+    return this.defaultValue!;
+  },
+});
+
 export const headerCode = flag<boolean>({
   key: 'header-flag',
   defaultValue: false,
