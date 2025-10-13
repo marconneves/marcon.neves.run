@@ -8,11 +8,11 @@ export default function ContactScreen() {
     <main id="contact" className="flex px-10 items-center justify-center min-h-screen gap-20 cursor-none">
       <SmartCursor areaId="contact" />
 
-      <div>
-        <header>
+      <section>
+        <div>
           Nova Mensagem
-        </header>
-        <body>
+        </div>
+        <div>
             <div>
               <span>Para:</span> <span>marcon@neves.run</span>
             </div>
@@ -22,11 +22,11 @@ export default function ContactScreen() {
             <div>
               <span>Sua Mensagem...</span> 
             </div>
-        </body>
-        <footer>
+        </div>
+        <div>
           <Button>Enviar</Button>
-        </footer>
-      </div>
+        </div>
+      </section>
 
       <div className="w-full h-[1.5px] bg-gray-800" />
       <footer>

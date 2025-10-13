@@ -37,14 +37,13 @@ export const newsletterPageFlag = flag<boolean>({
   decide() {
     return this.defaultValue!;
   }
-})
+});
 
-export const headerCode = flag<boolean>({
-  key: 'header-flag',
+export const projectsPageFlag = flag<boolean>({
+  key: 'projects-page-flag',
   defaultValue: false,
-  description:
-    'Ativar header e navegação do site.',
+  description: 'Ativar feature da projetos.',
   decide() {
     return this.defaultValue!;
-  },
+  }
 });
