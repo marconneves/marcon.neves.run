@@ -90,13 +90,10 @@ code {
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
-@theme {
+@theme inline {
   --font-sans: var(--font-poppins);
   --font-mono: var(--font-manrope);
   --font-code: var(--font-fira-code);
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
