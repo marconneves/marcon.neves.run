@@ -4,6 +4,7 @@
     "": {
       "name": "marcon.neves.run",
       "dependencies": {
+        "@img/sharp-linux-x64": "^0.34.4",
         "@payloadcms/db-mongodb": "^3.60.0",
         "@payloadcms/next": "^3.60.0",
         "@payloadcms/richtext-lexical": "^3.60.0",
