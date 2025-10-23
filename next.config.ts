@@ -5,9 +5,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    reactCompiler: false,
-    serverComponentsExternalPackages: ["sharp"],
+    reactCompiler: false
   },
+  serverExternalPackages: ["sharp"]
 };
 
 export default withPayload(withVercelToolbar()(nextConfig));
