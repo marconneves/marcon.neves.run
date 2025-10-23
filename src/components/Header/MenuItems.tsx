@@ -1,8 +1,8 @@
-import { aboutPageFlag, blogPageFlag, contactPageFlag, newsletterPageFlag, projectsPageFlag } from "@/flags"
+import { blogPageFlag, contactPageFlag, newsletterPageFlag, projectsPageFlag } from "@/flags"
 import Link from "next/link";
 
 const menuItems = [
-  {label: 'Sobre', to: '/sobre', isActive: aboutPageFlag },
+  {label: 'Sobre', to: '/sobre' },
   {label: 'Projetos', to: '/projetos', isActive: projectsPageFlag },
   {label: 'Contato', to: '/contato', isActive: contactPageFlag },
   {label: 'Blog', to: '/blog', isActive: blogPageFlag },

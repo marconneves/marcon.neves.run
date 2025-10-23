@@ -1,14 +1,4 @@
 import { flag } from 'flags/next';
- 
-export const aboutPageFlag = flag<boolean>({
-  key: 'about-page-flag',
-  defaultValue: false,
-  description:
-    'Ativar pagina sobre.',
-  decide() {
-    return this.defaultValue!;
-  },
-});
 
 export const contactPageFlag = flag<boolean>({
   key: 'contact-page-flag',
