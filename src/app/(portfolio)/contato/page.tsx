@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { contactPageFlag } from "../../flags";
+import { contactPageFlag } from "../../../flags";
 import ContactScreen from "@/features/contact/screen/ContactScreen";
  
 

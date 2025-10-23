@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { aboutPageFlag } from "../../flags";
+import { aboutPageFlag } from "../../../flags";
 import AboutScreen from "@/features/about/screen/AboutScreen";
  
 

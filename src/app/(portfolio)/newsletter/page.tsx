@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { newsletterPageFlag } from "../../flags";
+import { newsletterPageFlag } from "../../../flags";
 import NewsletterScreen from "@/features/newsletter/screen/NewsletterScreen";
  
 

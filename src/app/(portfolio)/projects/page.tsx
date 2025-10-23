@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { projectsPageFlag } from "../../flags";
+import { projectsPageFlag } from "../../../flags";
 import ProjectsScreen from "@/features/projects/screen/ProjectsScreen";
  
 

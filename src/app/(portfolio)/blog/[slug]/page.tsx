@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { blogPageFlag } from "../../../flags";
+import { blogPageFlag } from "../../../../flags";
 import BlogArticleScreen from "@/features/blog/screen/BlogArticleScreen";
  
 
