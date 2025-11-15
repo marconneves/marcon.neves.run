@@ -1,4 +1,5 @@
 import { GlobalConfig } from "payload";
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 export const About: GlobalConfig = {
   slug: 'about',
@@ -33,7 +34,7 @@ export const About: GlobalConfig = {
         { name: "title", type: "text", label: "Cargo" },
         { name: "company", type: "text", label: "Empresa" },
         { name: "period", type: "text", label: "Período" },
-        { name: "description", type: "text", label: "Descrição" },
+        { name: "description", type: "richText", label: "Descrição" },
       ],
     },
   ],
@@ -43,7 +44,7 @@ interface CareerItem {
   title: string;
   company: string;
   period: string;
-  description: string;
+  description: SerializedEditorState;
 }
 
 export interface AboutData {

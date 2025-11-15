@@ -2,6 +2,7 @@ import SmartCursor from "@/components/SmartCursor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { AboutData } from "../collections/About";
+import { RichText } from '@payloadcms/richtext-lexical/react'
 
 export default async function AboutScreen() {
     const res = await fetch(`${process.env.PAYLOAD_URL}/api/globals/about`, {
@@ -32,13 +33,13 @@ export default async function AboutScreen() {
           {about.career.map((career, index) => (
             <div key={index} className="font-mono text-base font-regular text-secondary">
               <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1 md:gap-2">
                   <h4 className="text-lg font-medium text-white">{career.title}</h4>
                   <span>{career.company}</span>
-                </div>
-                <div className="flex flex-col md:flex-row md:gap-4 md:items-center">
                   <span className="text-sm">{career.period}</span>
-                  <p className="text-sm md:max-w-[350px]">{career.description}</p>
+                </div>
+                <div className="flex flex-col mt-3 md:mt-0 md:flex-row md:items-center">
+                  <p className="text-sm md:max-w-[500px]"><RichText data={career.description} /></p>
                 </div>
               </div>
 
