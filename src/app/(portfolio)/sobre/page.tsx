@@ -19,7 +19,7 @@ import { Media } from "../../../../payload-types";
       openGraph: mergeOpenGraph({
         title: String(seoData.title),
         description: String(seoData.description),
-        url: '/about',
+        url: '/sobre',
         images: seoData.image ? [
             { url: (seoData.image as Media)?.url || '' }
         ] : [],
