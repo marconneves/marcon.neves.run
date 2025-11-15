@@ -87,14 +87,14 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    about: About;
     home: Home;
+    about: About;
   };
   globalsSelect: {
-    about: AboutSelect<false> | AboutSelect<true>;
     home: HomeSelect<false> | HomeSelect<true>;
+    about: AboutSelect<false> | AboutSelect<true>;
   };
-  locale: null;
+  locale: 'pt-BR' | 'en';
   user: User & {
     collection: 'users';
   };
@@ -320,6 +320,35 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: string;
+  shortDescription: string;
+  links: {
+    title: string;
+    link: string;
+    id?: string | null;
+  }[];
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?:
+      | {
+          keyword: string;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about".
  */
 export interface About {
@@ -383,48 +412,15 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home".
+ * via the `definition` "home_select".
  */
-export interface Home {
-  id: string;
-  shortDescription: string;
-  links: {
-    title: string;
-    link: string;
-    id?: string | null;
-  }[];
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    keywords?:
-      | {
-          keyword: string;
-          id?: string | null;
-        }[]
-      | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about_select".
- */
-export interface AboutSelect<T extends boolean = true> {
-  name?: T;
-  photo?: T;
-  sumary?: T;
-  career?:
+export interface HomeSelect<T extends boolean = true> {
+  shortDescription?: T;
+  links?:
     | T
     | {
         title?: T;
-        company?: T;
-        period?: T;
-        description?: T;
+        link?: T;
         id?: T;
       };
   meta?:
@@ -446,15 +442,19 @@ export interface AboutSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home_select".
+ * via the `definition` "about_select".
  */
-export interface HomeSelect<T extends boolean = true> {
-  shortDescription?: T;
-  links?:
+export interface AboutSelect<T extends boolean = true> {
+  name?: T;
+  photo?: T;
+  sumary?: T;
+  career?:
     | T
     | {
         title?: T;
-        link?: T;
+        company?: T;
+        period?: T;
+        description?: T;
         id?: T;
       };
   meta?:

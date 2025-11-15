@@ -29,15 +29,16 @@ export const About: GlobalConfig = {
           fields: [
             {
               name: "photo",
-              type: "upload",
-              relationTo: "media",
               label: "Foto",
+              type: "upload",
+              relationTo: "media"
             },
             {
               name: "sumary",
+              label: "Descrição",
               type: "richText",
               required: true,
-              label: "Descrição",
+              localized: true
             },
           ],
         },
@@ -48,10 +49,10 @@ export const About: GlobalConfig = {
               type: "array",
               label: "Carreira",
               fields: [
-                { name: "title", type: "text", label: "Cargo" },
-                { name: "company", type: "text", label: "Empresa" },
-                { name: "period", type: "text", label: "Período" },
-                { name: "description", type: "richText", label: "Descrição" },
+                { name: "title", type: "text", label: "Cargo", localized: true },
+                { name: "company", type: "text", label: "Empresa", localized: true },
+                { name: "period", type: "text", label: "Período", localized: true },
+                { name: "description", type: "richText", label: "Descrição", localized: true },
               ],
             },
           ],

@@ -28,7 +28,7 @@ import { Media } from "../../../payload-types";
       }),
     };
   } catch {
-    return { title: 'Sobre Mim - Erro' };
+    return { title: 'Site - Erro' };
   }
 }
 

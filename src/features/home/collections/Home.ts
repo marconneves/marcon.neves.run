@@ -20,6 +20,7 @@ export const Home: GlobalConfig = {
               maxLength: 36,
               required: true,
               label: "Descrição Curta",
+              localized: true
             },
             {
               name: "links",

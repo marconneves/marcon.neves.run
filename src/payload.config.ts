@@ -9,7 +9,21 @@ import { Home } from './features/home/collections/Home'
 export default buildConfig({
   editor: lexicalEditor(),
   collections: [Media],
-  globals: [About, Home],
+  globals: [Home, About],
+  localization: {
+    locales: [
+      {
+        label: 'Portugues',
+        code: 'pt-BR',
+      },
+      {
+        label: 'English',
+        code: 'en',
+      },
+    ],
+    defaultLocale: 'pt-BR',
+    fallback: true,
+  },
   secret: process.env.PAYLOAD_SECRET || '',
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
