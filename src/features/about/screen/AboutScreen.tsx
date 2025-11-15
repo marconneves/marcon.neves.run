@@ -2,14 +2,11 @@ import SmartCursor from "@/components/SmartCursor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { About, Media } from "../../../../payload-types";
+import { Media } from "../../../../payload-types";
+import { fetchAboutData } from "../services/fetchAboutData";
 
 export default async function AboutScreen() {
-    const res = await fetch(`${process.env.PAYLOAD_URL}/api/globals/about`, {
-    next: { revalidate: 60 },
-  });
-
-  const about: About = await res.json();
+  const about = await fetchAboutData();
 
   return (
     <main id="about" className="flex flex-col max-w-[1080px] px-10 items-center justify-center min-h-screen gap-20 cursor-none m-auto mt-25">

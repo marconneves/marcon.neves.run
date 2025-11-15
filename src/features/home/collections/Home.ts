@@ -1,5 +1,5 @@
 import { GlobalConfig } from "payload";
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import { MetaDescriptionField, MetaImageField, MetaTitleField, OverviewField, PreviewField } from "@payloadcms/plugin-seo/fields";
 
 export const Home: GlobalConfig = {
   slug: 'home',
@@ -9,47 +9,77 @@ export const Home: GlobalConfig = {
   },
   fields: [
     {
-      name: "name",
-      type: "text",
-      required: true,
-      label: "Nome",
-    },
-    {
-      name: "photo",
-      type: "upload",
-      relationTo: "media",
-      label: "Foto",
-    },
-    {
-      name: "description",
-      type: "textarea",
-      required: true,
-      label: "Descrição",
-    },
-    {
-      name: "career",
-      type: "array",
-      label: "Carreira",
-      fields: [
-        { name: "title", type: "text", label: "Cargo" },
-        { name: "company", type: "text", label: "Empresa" },
-        { name: "period", type: "text", label: "Período" },
-        { name: "description", type: "richText", label: "Descrição" },
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Base',
+          fields: [
+            {
+              name: "shortDescription",
+              type: "text",
+              maxLength: 36,
+              required: true,
+              label: "Descrição Curta",
+            },
+            {
+              name: "links",
+              type: "array",
+              maxRows: 2,
+              minRows: 2,
+              required: true,
+              label: "Links",
+              fields: [
+                { name: "title", type: "text", label: "Titulo", required: true },
+                { name: "link", type: "text", label: "Link", required: true }
+              ],
+            },
+          ],
+        },
+        {
+          name: 'meta',
+          label: 'SEO',
+          fields: [
+            MetaTitleField({
+              hasGenerateFn: true,
+              overrides: {
+                label: 'Title'
+              }
+            }),
+            MetaDescriptionField({
+              hasGenerateFn: true,
+            }),
+            {
+              name: 'keywords',
+              label: 'Keywords (Palavras-chave)',
+              type: 'array',
+              minRows: 0,
+              maxRows: 20,
+              localized: true,
+              fields: [
+                {
+                  name: 'keyword',
+                  label: 'Palavra-chave',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+            MetaImageField({
+              relationTo: 'media'
+            }),
+            PreviewField({
+              hasGenerateFn: true,
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+            }),
+            OverviewField({
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+              imagePath: 'meta.image',
+            })
+          ],
+        },
       ],
     },
   ],
 };
-
-interface CareerItem {
-  title: string;
-  company: string;
-  period: string;
-  description: SerializedEditorState;
-}
-
-export interface AboutData {
-  name: string;
-  description: SerializedEditorState;
-  photo?: { url: string };
-  career: CareerItem[];
-}

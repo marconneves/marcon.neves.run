@@ -1,6 +1,4 @@
 import { GlobalConfig } from "payload";
-import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
-// import { lexicalEditor } from "@payloadcms/richtext-lexical";
 
 import {
   MetaDescriptionField,
@@ -108,17 +106,3 @@ export const About: GlobalConfig = {
     },
   ],
 };
-
-interface CareerItem {
-  title: string;
-  company: string;
-  period: string;
-  description: SerializedEditorState;
-}
-
-export interface AboutData {
-  name: string;
-  sumary: SerializedEditorState;
-  photo?: { url: string };
-  career: CareerItem[];
-}
