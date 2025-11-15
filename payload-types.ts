@@ -297,7 +297,21 @@ export interface About {
   id: string;
   name: string;
   photo?: (string | null) | Media;
-  description: string;
+  sumary: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   career?:
     | {
         title?: string | null;
@@ -331,7 +345,7 @@ export interface About {
 export interface AboutSelect<T extends boolean = true> {
   name?: T;
   photo?: T;
-  description?: T;
+  sumary?: T;
   career?:
     | T
     | {

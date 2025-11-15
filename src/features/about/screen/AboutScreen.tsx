@@ -22,7 +22,10 @@ export default async function AboutScreen() {
         </Avatar>
         <div className="w-full md:w-2/3 text-left">
           <h1 className="text-3xl md:text-4xl font-heading font-bold font-sans tracking-tighter">Sou <span className="text-5xl md:text-6xl text-primary font-bold">{about.name}</span></h1>
-          <p className="mt-4 text-base text-secondary">{about.description}</p>
+          <div className="mt-4 text-base text-secondary">
+            <RichText data={about.sumary} />
+          </div>
+          
         </div>
       </div>
 
