@@ -16,7 +16,7 @@ export default async function AboutScreen() {
       <SmartCursor areaId="about" />
 
       <div className="flex gap-10 flex-col md:gap-12 md:flex-row">
-        <Avatar className="border-solid border-4 border-primary size-full max-w-[300px] md:size-[300px] " >
+        <Avatar className="border-solid border-4 border-primary size-full max-w-[300px] size-[300px] " >
           <AvatarImage src={about.photo?.url} />
           <AvatarFallback>MW</AvatarFallback>
         </Avatar>
