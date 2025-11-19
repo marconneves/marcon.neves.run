@@ -8,20 +8,20 @@ function generateLink(path?: string): string {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const home = await fetchHomeData();
-  const about = await fetchAboutData();
+  const home = await fetchHomeData().catch(() => undefined);
+  const about = await fetchAboutData().catch(() => undefined);
 
 
   return [
     {
       url: generateLink(),
-      lastModified: home.updatedAt ? new Date(home.updatedAt) : new Date(),
+      lastModified: home?.updatedAt ? new Date(home.updatedAt) : new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
       url: generateLink('/sobre'),
-      lastModified: about.updatedAt ? new Date(about.updatedAt) : new Date(),
+      lastModified: about?.updatedAt ? new Date(about.updatedAt) : new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
