@@ -1,0 +1,44 @@
+import { VercelToolbar } from '@vercel/toolbar/next';
+import type { Metadata } from "next";
+import { Fira_Code, Manrope, Poppins } from "next/font/google";
+import "../globals.css";
+import Header from "@/components/Header";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  weight: ["200", "300", "400", "500", "600", "700", "800"]
+});
+
+
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
+  weight: ["300", "400", "500", "600", "700"]
+});
+
+export const metadata: Metadata = {
+  title: "Marcon Neves",
+  description: "Portfolio pessoal de Marcon Neves - Desenvolvedor Full Stack",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${poppins.variable} ${manrope.variable} ${firaCode.variable} antialiased min-h-screen relative flex flex-col`}
+      >
+        <VercelToolbar />
+        <Header />
+        {children}
+      </body>
+    </html>
+  );
+}
