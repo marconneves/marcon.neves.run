@@ -4,13 +4,13 @@ import { mergeOpenGraph } from "@/lib/seo";
 import { Metadata } from "next";
 import { Media } from "../../../../payload-types";
 
- export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   try {
     const about = await fetchAboutData();
     const seoData = about.meta;
 
     if (!seoData) {
-        return { title: 'Sobre Mim', description: 'Página de informações sobre o autor do site.' };
+      return { title: 'Sobre Mim', description: 'Página de informações sobre o autor do site.' };
     }
 
     return {
@@ -21,7 +21,7 @@ import { Media } from "../../../../payload-types";
         description: String(seoData.description),
         url: '/sobre',
         images: seoData.image ? [
-            { url: (seoData.image as Media)?.url || '' }
+          { url: (seoData.image as Media)?.url || '' }
         ] : [],
       }),
     };

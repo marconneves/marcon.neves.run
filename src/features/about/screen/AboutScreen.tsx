@@ -4,17 +4,18 @@ import { Separator } from "@/components/ui/separator";
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Media } from "../../../../payload-types";
 import { fetchAboutData } from "../services/fetchAboutData";
+import Image from "next/image";
 
 export default async function AboutScreen() {
   const about = await fetchAboutData();
 
   return (
-    <main id="about" className="flex flex-col max-w-[1080px] px-10 items-center justify-center min-h-screen gap-20 cursor-none m-auto mt-25">
+    <main id="about" className="flex flex-col max-w-[1080px] px-10 items-center justify-center min-h-screen gap-20 cursor-none m-auto mt-25 mb-15">
       <SmartCursor areaId="about" />
 
       <div className="flex gap-10 flex-col md:gap-12 md:flex-row">
-        <Avatar className="border-solid border-4 border-primary size-full max-w-[300px] size-[300px] " >
-          <AvatarImage src={String((about.photo as Media)?.url)} />
+        <Avatar className="border-solid border-4 border-primary size-full max-w-[300px] size-[300px]" >
+          <Image priority alt={String((about.photo as Media)?.alt)} src={String((about.photo as Media)?.url)} width={300} height={300} />
           <AvatarFallback>MW</AvatarFallback>
         </Avatar>
         <div className="w-full md:w-2/3 text-left">
@@ -22,7 +23,6 @@ export default async function AboutScreen() {
           <div className="mt-4 text-base text-secondary">
             <RichText data={about.sumary} />
           </div>
-          
         </div>
       </div>
 
